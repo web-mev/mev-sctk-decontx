@@ -20,6 +20,8 @@ option_list <- list(
     )
 )
 
+opt <- parse_args(OptionParser(option_list=option_list))
+
 # Import counts as a data.frame
 # expects the data frame write output as:
 # write.table(
