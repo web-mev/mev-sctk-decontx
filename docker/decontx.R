@@ -31,7 +31,7 @@ option_list <- list(
 #     quote = FALSE
 # )
 cnts <- read.table(
-    file = RAW_COUNT_MATRIX,
+    file = opt$input_file,
     sep = "\t",
     row.names = 1,
     header=T,
