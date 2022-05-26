@@ -1,0 +1,1 @@
+Rscript /opt/software/decontx.R -f {{raw_counts}}

@@ -9,14 +9,15 @@ option_list <- list(
     make_option(
         c('-f', '--input_file'),
         help='PATH to count matrix input'
-    ),
-    make_option(
-        c('-o', '--output_file_prefix'),
-        help="The prefix for the output file"
     )
 )
 
 opt <- parse_args(OptionParser(option_list=option_list))
+
+
+# change the working directory to co-locate with the counts file:
+working_dir <- dirname(opt$input_file)
+setwd(working_dir)
 
 # Import counts as a data.frame
 # expects the data frame write output as:
@@ -82,10 +83,17 @@ df.final = merge(df.decontx, colname_mapping, by.x='cell_barcode', by.y='adjuste
 rownames(df.final) = df.final[, 'orig_names']
 df.final = df.final[, c('decontx_contamination', 'decontx_class')]
 
-output_filename <- paste(opt$output_file_prefix, 'tsv', sep='.')
+output_filename <- paste(working_dir, 'sctk_decontx_output.tsv', sep='/')
 write.table(
     df.final,
     output_filename,
     sep = "\t",
     quote = F
 )
+
+# for WebMEV compatability, need to create an outputs.json file.
+json_str = paste0(
+       '{"decontaminate_output":"', output_filename, '"}'
+)
+output_json <- paste(working_dir, 'outputs.json', sep='/')
+write(json_str, output_json)
