@@ -17,7 +17,7 @@ task runDecontx {
 
     File raw_counts
     
-    String output_name_prefix = "sctk_doublet_cells_reduced_counts"
+    String output_name_prefix = "sctk_decontx"
     Int disk_size = 20
 
     command {

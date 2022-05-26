@@ -76,9 +76,15 @@ df.decontx <- data.frame(
     decontx_contamination = as.vector(sce.flt$decontX_contamination),
     decontx_class = as.vector(sce.flt$decontX_clusters)
 )
+
+# map back to the original colnames
+df.final = merge(df.decontx, colname_mapping, by.x='cell_barcode', by.y='adjusted_names')
+rownames(df.final) = df.final[, 'orig_names']
+df.final = df.final[, c('decontx_contamination', 'decontx_class')]
+
 output_filename <- paste(opt$output_file_prefix, 'tsv', sep='.')
 write.table(
-    df.decontx,
+    df.final,
     output_filename,
     sep = "\t",
     quote = F
