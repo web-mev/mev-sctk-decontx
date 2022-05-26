@@ -13,10 +13,6 @@ option_list <- list(
     make_option(
         c('-o', '--output_file_prefix'),
         help="The prefix for the output file"
-    ),
-    make_option(
-        c('-d', '--decontx_file_prefix'),
-        help="The prefix for the decontX class file"
     )
 )
 
@@ -73,12 +69,17 @@ sce.flt <- runDecontX(
     dbscanEps = 1
 )
 
-# Create a data frame from the DecontiX factors and the SCE object
+# Create a data frame from the DecontX factors and the SCE object
 # cell barcodes
 df.decontx <- data.frame(
     cell_barcode = as.vector(colnames(sce.flt)),
-    decontix_contamination = as.vector(sce.flt$decontX_contamination),
+    decontx_contamination = as.vector(sce.flt$decontX_contamination),
     decontx_class = as.vector(sce.flt$decontX_clusters)
 )
-
-# Requires output
+output_filename <- paste(opt$output_file_prefix, 'tsv', sep='.')
+write.table(
+    df.decontx,
+    output_filename,
+    sep = "\t",
+    quote = F
+)

@@ -1,0 +1,28 @@
+{
+    "name": "SCTK DecontX decontamination", 
+    "description": "Run the SCTK decontX QC/decontamination process.", 
+    "inputs": {
+        "SctkDecontx.raw_counts": {
+            "description": "The input count matrix. Must be an integer-based table where the counts correspond to gene expression.", 
+            "name": "Count matrix:", 
+            "required": true, 
+            "spec": {
+                "attribute_type": "VariableDataResource", 
+                "resource_types": ["I_MTX", "RNASEQ_COUNT_MTX"], 
+                "many": false
+            }
+        }
+    }, 
+    "outputs": {
+        "SctkDecontx.decontaminate_output": {
+            "required": true,
+            "spec": {
+                "attribute_type": "DataResource", 
+                "resource_type": "ANN",
+                "many": false
+            }
+        }
+    }, 
+    "mode": "cromwell",
+    "workspace_operation": true
+}
