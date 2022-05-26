@@ -21,7 +21,7 @@ task runDecontx {
     Int disk_size = 20
 
     command {
-        Rscript /opt/software/decontX.R \
+        Rscript /opt/software/decontx.R \
         -f ${raw_counts} \
         -o ${output_name_prefix}
     }
