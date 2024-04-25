@@ -5,5 +5,3 @@ RUN R -e "install.packages('optparse',dependencies=TRUE, repos='http://cran.rstu
 
 RUN mkdir -p /opt/software
 ADD decontx.R /opt/software/
-
-ENTRYPOINT ["/bin/bash"]
