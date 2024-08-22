@@ -6,7 +6,7 @@
             "description": "The input count matrix. Must be an integer-based table where the counts correspond to gene expression.", 
             "name": "Count matrix:", 
             "required": true,
-            "converter": "api.converters.data_resource.LocalDockerSingleVariableDataResourceConverter",
+            "converter": "api.converters.data_resource.ECSSingleVariableDataResourceConverter",
             "spec": {
                 "attribute_type": "VariableDataResource", 
                 "resource_types": ["I_MTX", "RNASEQ_COUNT_MTX"], 
@@ -17,7 +17,7 @@
     "outputs": {
         "decontaminate_output": {
             "required": true,
-            "converter": "api.converters.data_resource.LocalDockerSingleDataResourceConverter",
+            "converter": "api.converters.data_resource.ECSSingleDataResourceConverter",
             "spec": {
                 "attribute_type": "DataResource", 
                 "resource_type": "ANN",
@@ -25,6 +25,6 @@
             }
         }
     }, 
-    "mode": "local_docker",
+    "mode": "ecs",
     "workspace_operation": true
 }
